@@ -12,8 +12,8 @@ package effective.clas;
  * <p>
  * 非可变对象只有对象刚被创建时的一个状态
  * 非可变对象本质上是线程安全的它们不要求同步（因为其只有一个状态，创建了就不会被更改。），所以非可变对象可以被自由的共享
- * 不仅可以共享非可变对象，甚至可以共享它们的内部信息。
- * 非可变对象唯一的缺陷是，对于每一个不同的值都要求一个单独的对象
+ * 不仅可以共享非可变对象，甚至可以共享它们的内部信息(例如BigInteger类内部把符号和数值分为两部分进行处理，如果取绝对值或者取负数值，则只需更改符号，而不用重新计算数值)
+ * 非可变对象唯一的缺陷是，对于每一个不同的值都要求一个单独的对象。
  * Created by wangjj on 16-3-27.
  */
 public final class Complex {
@@ -56,7 +56,8 @@ public final class Complex {
         }
         Complex c = (Complex) o;
 
-        return (Float.floatToIntBits(re) == Float.floatToIntBits(c.re)) && (Float.floatToIntBits(im) == Float.floatToIntBits(c.im));
+        return (Float.floatToIntBits(re) == Float.floatToIntBits(c.re)) && (Float.floatToIntBits
+                (im) == Float.floatToIntBits(c.im));
     }
 
     @Override
